@@ -1,0 +1,7 @@
+.CountySelector{
+    display: flex;
+}
+
+.CountySelector div{
+    padding: 10px 15px;
+}
