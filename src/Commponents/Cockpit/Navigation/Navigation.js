@@ -1,16 +1,18 @@
 import React from 'react'
 
 //utils import
-import classes from './Navigation.module.css'
+// import classes from './Navigation.module.css';
+import './Navigation.css'
+import { NavLink } from 'react-router-dom';
 
  const Navigation = (props) => {
     return (
         <div>
-            <nav className={classes["Navigation"]}>
+            <nav className={"Navigation"}>
                 <ul>
-                    <li>Top News</li>
-                    <li>Categories</li>
-                    <li>Search</li>
+                    <li><NavLink exact to="/">Top News</NavLink></li>
+                    <li><NavLink to="categories">Categories</NavLink></li>
+                    <li><NavLink to="/search">Search</NavLink></li>
                 </ul>
             </nav>
         </div>

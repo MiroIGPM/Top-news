@@ -13,3 +13,13 @@
     color: #000000;
     cursor: pointer;
 }
+
+.Navigation ul li a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.Navigation ul li:hover a{
+    color: #000000;
+}
+
