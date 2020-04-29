@@ -4,4 +4,11 @@
 
 .CountySelector div{
     padding: 10px 15px;
+    transition: background-color 0.3s ease-in;
+}
+
+.CountySelector div:hover{
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
 }

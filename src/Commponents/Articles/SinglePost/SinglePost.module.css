@@ -1,0 +1,37 @@
+.SinglePost{
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+.SinglePost div div{
+    padding: 8px;
+}
+
+.SinglePost__img{
+    width: 100%;
+}
+
+.SinglePost__img img{
+    width: 100%;
+}
+
+.SinglePost__button button{
+    float: right;
+    background: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-right: 55px;
+}
+
+.SinglePost__button button::after{
+    clear: both;
+}
+
