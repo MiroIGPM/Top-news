@@ -7,11 +7,14 @@ import ContrySelector from './CountrySelector/CountrySelector'
 //utils import
 import classes from './Cockpit.module.css'
 
-const Cockipt = () => {
+const Cockipt = (props) => {
+
+    const { changeCoutry } = props
+
     return (
         <div className={classes["Cockpit"]}>
             <Navigation />
-            <ContrySelector />
+            <ContrySelector clicked={changeCoutry}/>
         </div>
     )
 }

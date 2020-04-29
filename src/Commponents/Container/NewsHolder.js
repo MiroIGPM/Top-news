@@ -15,25 +15,42 @@ import axios from 'axios'
 
         this.state = {
             topNews: [],
-            totalResults: null
+            totalResults: null,
+            activeCountry: "US",
+            loading: false
         }
     }
 
     //initial fetch data
     componentDidMount(){
-        axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=185cffc9ba164d9ba9029e9106d9b4c7')
+        this.fetchData()
+    }
+
+    componentDidUpdate(){
+
+    }
+
+    // fetch data function
+    fetchData = () =>{
+        this.setState({loading: true})
+        axios.get(`https://newsapi.org/v2/top-headlines?country=${this.state.activeCountry}&apiKey=185cffc9ba164d9ba9029e9106d9b4c7`)
         .then(res => {
-            this.setState({totalResults: res.data.totalResults,topNews: res.data.articles})
+            this.setState({totalResults: res.data.totalResults,topNews: res.data.articles, loading: false})
         })
         .catch(err => console.log(err))
+    }
+
+    //change country function
+    changeCountryHandler = (e) =>{
+        this.setState({activeCountry: e.target.textContent})
     }
 
     render() {
         return (
             <Auxiliary>
                 <div className={classes["NewsHolder"]}>
-                    <Cockipt />
-                    <Articles topNews={this.state.topNews}/>
+                    <Cockipt changeCoutry={this.changeCountryHandler}/>
+                    <Articles topNews={this.state.topNews} loading={this.state.loading}/>
                 </div>
             </Auxiliary>
         )

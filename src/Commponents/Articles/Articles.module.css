@@ -7,6 +7,13 @@
     padding: 30px;
 }
 
+.LoaderHolder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (max-width: 860px){
     .Articles{
         gap: 1em;

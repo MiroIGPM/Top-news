@@ -4,10 +4,13 @@ import React from 'react'
 import classes from './CountySelector.module.css'
 
  const CountrySelector = (props) => {
+
+    const { clicked } = props
+
     return (
         <div className={classes["CountySelector"]}>
-            <div>GB</div>
-            <div>US</div>
+            <div onClick={clicked}>GB</div>
+            <div onClick={clicked}>US</div>
         </div>
     )
 }
