@@ -1,11 +1,12 @@
 import React from 'react'
 
 //utils import
-import classes from './SinglePost.module.css'
-
+import classes from './Thumbnail.module.css'
+import { Link } from 'react-router-dom'
+ 
  const SinglePost = (props) => {
      
-    const { title, urlToImage, description } = props 
+    const { id, title, urlToImage, description } = props 
 
     return (
         <div className={classes["SinglePost"]}>
@@ -16,7 +17,7 @@ import classes from './SinglePost.module.css'
                 </div>
                 <div><p>{description}</p></div>
                 <div className={classes["SinglePost__button"]}>
-                    <button>More</button>
+                    <button><Link to={`/${id}`}>More</Link></button>
                 </div>
             </div>    
         </div>
