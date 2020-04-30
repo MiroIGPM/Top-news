@@ -1,0 +1,70 @@
+.FullPost {
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.Title {
+    color: #ecf0f1;
+    margin-bottom: 30px;
+}
+
+.ImgContainer {
+    width: 100%;
+    background-color: #39393b;
+    padding: 40px;
+    margin-bottom: 20px;
+}
+
+.ImgContainer img {
+    width: 100%;
+}
+
+.Content {
+    width: 100%;
+    background-color: #39393b;
+    padding: 40px;
+    color: #ecf0f1;
+    font-size: 18px;
+}
+
+.BtnHolder {
+    margin-top: 20px;
+    max-width: 185px;
+    text-align: center;
+}
+
+.Btn {
+    width: 100%;
+    color: #ecf0f1;
+    padding: 15px 25px;
+    background-color: #39393b;
+    border-radius: 20px;
+    transition: all 0.4s ease 0s;
+    font-size: 18px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.Btn:hover {
+    background-color: #ff3700;
+}
+
+@media only screen and (max-width: 500px) {
+    .FullPost {
+        padding: 20px;
+    }
+    .Title {
+        font-size: 24px;
+    }
+    .ImgContainer,
+    .Content {
+        padding: 20px;
+    }
+    .BtnHolder {
+        max-width: 135px;
+    }
+    .Btn {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+}

@@ -79,6 +79,7 @@ class NewsHolder extends Component {
                                 />
                             )}
                         />
+                        <Route path="/search" render={() => <h1>Search</h1>} />
                         <Route
                             path="/:id"
                             render={() => <FullPost topNews={topNews} />}

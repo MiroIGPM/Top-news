@@ -1,37 +1,88 @@
-.SinglePost{
-    width: 100%;
-    max-width: 450px;
+.TxtMedium {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #ecf0f1;
+}
+
+.Thumbnail {
+    grid-column-end: span 4;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    margin: 0 auto;
-}
-
-.SinglePost div div{
-    padding: 8px;
-}
-
-.SinglePost__img{
-    width: 100%;
-}
-
-.SinglePost__img img{
-    width: 100%;
-}
-
-.SinglePost__button button{
-    float: right;
-    background: none;
-    font-size: 18px;
-    padding: 10px 15px;
+    flex-direction: column;
+    background-color: #39393b;
     cursor: pointer;
-    margin-right: 55px;
+    transition: all 0.3s ease 0s;
 }
 
-.SinglePost__button button::after{
-    clear: both;
+.Thumbnail:hover {
+    transform: translateY(-7px);
 }
 
+.Title {
+    font-size: 19px;
+    color: #ecf0f1;
+}
+
+.ImgContainer {
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden;
+    position: relative;
+}
+
+.ImgContainer img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Content {
+    padding: 20px;
+}
+
+.Description {
+    margin-bottom: 20px;
+}
+
+.BtnHolder {
+    display: flex;
+    align-self: end;
+    align-items: center;
+}
+
+.BtnHolder a {
+    margin-left: auto;
+    text-decoration: none;
+}
+
+.Btn {
+    padding: 7px 15px;
+    background-color: #303032;
+    border-radius: 20px;
+    transition: all 0.4s ease 0s;
+    font-size: 18px;
+}
+
+.Btn:hover {
+    background-color: #ff3700;
+}
+
+@media only screen and (max-width: 1000px) {
+    .Thumbnail {
+        grid-column-end: span 6;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .Thumbnail {
+        grid-column-end: span 12;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .Thumbnail {
+        grid-column-end: span 6;
+    }
+}

@@ -1,6 +1,5 @@
-.NewsHolder{
+.NewsHolder {
     width: 100%;
-    max-width: 1190px;
+    max-width: 1250px;
     margin: 0 auto;
-    border: 1px solid #000000;
 }

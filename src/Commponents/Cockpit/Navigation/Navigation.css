@@ -1,25 +1,20 @@
-.Navigation ul{
+.Navigation ul {
     list-style-type: none;
 }
 
-.Navigation ul li{
+.Navigation ul li {
     display: inline-block;
     padding: 10px 15px;
+    font-size: 20px;
     transition: background-color 0.3s ease-in;
 }
 
-.Navigation ul li:hover{
-    background-color: #ffffff;
-    color: #000000;
+.Navigation ul li:hover {
+    background-color: #ff3700;
     cursor: pointer;
 }
 
-.Navigation ul li a{
+.Navigation ul li a {
     color: #ffffff;
     text-decoration: none;
 }
-
-.Navigation ul li:hover a{
-    color: #000000;
-}
-

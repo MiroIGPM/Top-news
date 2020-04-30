@@ -9,40 +9,42 @@ import Spinner from "../../UI/Spinner/Spinner";
 import classes from "./TopArticles.module.css";
 
 const TopArticles = (props) => {
-  const { topNews, loading, activeCountry } = props;
-  // Setting up title country
-  let country = "";
-  if (activeCountry === "US") {
-    country = "United States";
-  } else if (activeCountry === "GB") {
-    country = "Great Britain";
-  }
+    const { topNews, loading, activeCountry } = props;
+    // Setting up title country
+    let country = "";
+    if (activeCountry === "US") {
+        country = "United States";
+    } else if (activeCountry === "GB") {
+        country = "Great Britain";
+    }
 
-  let holderClass = "LoaderHolder";
-  let topNewsArticles = <Spinner />;
-  if (!loading) {
-    // maping over fetched data
-    topNewsArticles = topNews.map((article) => {
-      const { id, title, urlToImage, description } = article;
-      return (
-        <Thumbnail
-          key={id}
-          id={id}
-          title={title}
-          urlToImage={urlToImage}
-          description={description}
-        />
-      );
-    });
-    holderClass = "Articles";
-  }
+    let holderClass = "LoaderHolder";
+    let topNewsArticles = <Spinner />;
+    if (!loading) {
+        // maping over fetched data
+        topNewsArticles = topNews.map((article) => {
+            const { id, title, urlToImage, description } = article;
+            return (
+                <Thumbnail
+                    key={id}
+                    id={id}
+                    title={title}
+                    urlToImage={urlToImage}
+                    description={description}
+                />
+            );
+        });
+        holderClass = "Articles";
+    }
 
-  return (
-    <Auxiliary>
-      <h1>{"Top news from " + country}</h1>
-      <div className={classes[holderClass]}>{topNewsArticles}</div>
-    </Auxiliary>
-  );
+    return (
+        <Auxiliary>
+            <h1 className={classes["Title"]}>{"Top news from " + country}</h1>
+            <div className={classes["Main"]}>
+                <div className={classes[holderClass]}>{topNewsArticles}</div>
+            </div>
+        </Auxiliary>
+    );
 };
 
 export default TopArticles;

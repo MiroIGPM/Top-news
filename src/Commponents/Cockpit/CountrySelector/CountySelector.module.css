@@ -1,14 +1,14 @@
-.CountySelector{
+.CountySelector {
     display: flex;
 }
 
-.CountySelector div{
+.CountySelector div {
     padding: 10px 15px;
     transition: background-color 0.3s ease-in;
+    font-size: 20px;
 }
 
-.CountySelector div:hover{
-    background-color: #ffffff;
-    color: #000000;
+.CountySelector div:hover {
+    background-color: #ff3700;
     cursor: pointer;
 }

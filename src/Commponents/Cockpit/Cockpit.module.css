@@ -1,7 +1,7 @@
-.Cockpit{
+.Cockpit {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #39393b;
+    color: #ecf0f1;
 }
