@@ -1,7 +1,17 @@
 .Cockpit {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    display: block;
     background-color: #39393b;
     color: #ecf0f1;
+}
+
+.Cockpit div {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 499px) {
+    .DisplayNone {
+        display: none !important;
+    }
 }

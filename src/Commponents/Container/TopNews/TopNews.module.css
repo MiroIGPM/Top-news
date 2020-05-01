@@ -2,9 +2,10 @@
     color: #ecf0f1;
     margin-left: 30px;
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-.Main {
+/* .Main {
     display: grid;
     grid-template-columns: 1fr repeat(12, minmax(auto, 60px)) 1fr;
     grid-gap: 40px;
@@ -34,4 +35,4 @@
         grid-template-columns: repeat(6, 1fr);
         grid-gap: 20px;
     }
-}
+} */

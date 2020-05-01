@@ -1,20 +1,37 @@
-.Navigation ul {
+.Navigation {
     list-style-type: none;
-}
-
-.Navigation ul li {
-    display: inline-block;
-    padding: 10px 15px;
     font-size: 20px;
-    transition: background-color 0.3s ease-in;
+}
+.Navigation li {
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid black;
 }
 
-.Navigation ul li:hover {
-    background-color: #ff3700;
-    cursor: pointer;
-}
-
-.Navigation ul li a {
-    color: #ffffff;
+.Navigation li a {
     text-decoration: none;
+    width: 100%;
+    display: block;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.Navigation li a:hover,
+.Navigation li a:active,
+.Navigation li a.active {
+    background-color: #ff3700;
+}
+
+@media (min-width: 500px) {
+    .Navigation li {
+        display: inline-block;
+        font-size: 20px;
+        transition: background-color 0.3s ease-in;
+        width: auto;
+        border: none;
+    }
+
+    .Navigation li a {
+        padding: 10px 15px;
+    }
 }

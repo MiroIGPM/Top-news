@@ -1,22 +1,28 @@
-import React from 'react'
+import React from "react";
 
 //utils import
 // import classes from './Navigation.module.css';
-import './Navigation.css'
-import { NavLink } from 'react-router-dom';
+import "./Navigation.css";
+import { NavLink } from "react-router-dom";
 
- const Navigation = (props) => {
+const Navigation = (props) => {
     return (
         <div>
-            <nav className={"Navigation"}>
-                <ul>
-                    <li><NavLink exact to="/">Top News</NavLink></li>
-                    <li><NavLink to="categories">Categories</NavLink></li>
-                    <li><NavLink to="/search">Search</NavLink></li>
-                </ul>
-            </nav>
+            <ul className={"Navigation"}>
+                <li>
+                    <NavLink exact to="/">
+                        Top News
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="categories">Categories</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/search">Search</NavLink>
+                </li>
+            </ul>
         </div>
-    )
-}
+    );
+};
 
-export default Navigation
+export default Navigation;

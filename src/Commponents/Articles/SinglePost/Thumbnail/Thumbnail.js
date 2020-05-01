@@ -4,7 +4,7 @@ import React from "react";
 import classes from "./Thumbnail.module.css";
 import { Link } from "react-router-dom";
 
-const SinglePost = (props) => {
+const Thumbnail = (props) => {
     const { id, title, urlToImage, description } = props;
 
     return (
@@ -13,10 +13,10 @@ const SinglePost = (props) => {
                 <p className={classes["Title"]}>{title}</p>
             </div>
             <div className={classes["ImgContainer"]}>
-                <img src={urlToImage} />
+                <img src={urlToImage} alt="News" />
             </div>
             <div className={classes["Content"]}>
-                {description.length === 0 ? (
+                {description == null ? (
                     <p
                         className={[
                             classes["Description"],
@@ -53,4 +53,4 @@ const SinglePost = (props) => {
     );
 };
 
-export default SinglePost;
+export default Thumbnail;
