@@ -13,18 +13,13 @@ import {
 } from "./types";
 
 //Import utils
-import axios from "axios";
+import axiosInstance from "../axios";
 import { v4 as uuidv4 } from "uuid";
-
-//API KEY
-const urlKey = "3f5f5ef8205341bb966c9c1bfa77fd50";
 
 export const fetchTopNews = (country, loading) => (dispatch) => {
     dispatch(toggleLoading(loading));
-    axios
-        .get(
-            `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${urlKey}`
-        )
+    axiosInstance
+        .get(`?country=${country}&apiKey=${process.env.REACT_APP_API_KEY}`)
         .then((res) => {
             const posts = res.data.articles;
             const updatePost = posts.map((posts) => {
@@ -44,9 +39,9 @@ export const fetchTopNews = (country, loading) => (dispatch) => {
 export const fetchSearchedNews = (country, keyword, loading) => (dispatch) => {
     if (keyword.length <= 0) return;
     dispatch(toggleLoading(loading));
-    axios
+    axiosInstance
         .get(
-            `https://newsapi.org/v2/top-headlines?country=${country}&q=${keyword}&apiKey=${urlKey}`
+            `?country=${country}&q=${keyword}&apiKey=${process.env.REACT_APP_API_KEY}`
         )
         .then((res) => {
             console.log(res);
@@ -68,9 +63,9 @@ export const fetchSearchedNews = (country, keyword, loading) => (dispatch) => {
 export const fetchCategories = (categories, country, loading) => (dispatch) => {
     categories.forEach((category) => {
         dispatch(toggleLoading(loading));
-        axios
+        axiosInstance
             .get(
-                `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${urlKey}`
+                `?country=${country}&category=${category}&apiKey=${process.env.REACT_APP_API_KEY}`
             )
             .then((res) => {
                 const posts = res.data.articles;
@@ -92,9 +87,9 @@ export const fetchCategories = (categories, country, loading) => (dispatch) => {
 };
 
 export const fetchSingleCategory = (country, category) => (dispatch) => {
-    axios
+    axiosInstance
         .get(
-            `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${urlKey}`
+            `?country=${country}&category=${category}&apiKey=${process.env.REACT_APP_API_KEY}`
         )
         .then((res) => {
             const posts = res.data.articles;
