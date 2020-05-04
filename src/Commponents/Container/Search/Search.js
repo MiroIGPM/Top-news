@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 
 //component import
 import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
@@ -13,7 +13,6 @@ import {
     fetchSearchedNews,
     resetTopNews,
 } from "../../../actions/newsActions";
-
 
 const Search = (props) => {
     const {
@@ -50,7 +49,7 @@ const Search = (props) => {
                 urlToImage={urlToImage}
                 description={description}
             />
-
+        );
     });
 
     return (

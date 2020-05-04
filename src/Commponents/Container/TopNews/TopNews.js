@@ -34,7 +34,6 @@ const TopNews = (props) => {
             fetchTopNews(activeCountry, loading);
         } else {
             fetchSingleCategory(activeCountry, activeCategory);
-
         }
     }, []);
 
@@ -46,14 +45,11 @@ const TopNews = (props) => {
         }
     }, [activeCountry]);
 
-
     useEffect(() => {
         return () => {
             resetCategory();
         };
     }, []);
-
-        
 
     let country = "";
     if (activeCountry === "US") {
@@ -69,7 +65,6 @@ const TopNews = (props) => {
     const topNewsArticles = topNews.map((article) => {
         const { id, title, urlToImage, description } = article;
         return (
-
             <Thumbnail
                 key={id}
                 id={id}
@@ -84,7 +79,6 @@ const TopNews = (props) => {
     if (!error) {
         handleError = <GridHolder>{topNewsArticles}</GridHolder>;
     }
-
 
     return (
         <Auxiliary>
@@ -108,6 +102,3 @@ export default connect(mapStateToProps, {
     fetchSingleCategory,
     resetTopNews,
 })(withRouter(TopNews));
-
-export default withRouter(TopNews);
-

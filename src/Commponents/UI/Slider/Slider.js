@@ -8,7 +8,6 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { setActiveCategory } from "../../../actions/newsActions";
 
-
 const Slider = (props) => {
     const [x, setX] = useState(0);
     const [slice, setSlice] = useState(5);
@@ -21,7 +20,6 @@ const Slider = (props) => {
             sliceIndex = 5;
 
             setX(0);
-
         }
         setSlice(sliceIndex);
     };
@@ -60,7 +58,6 @@ const Slider = (props) => {
 
     return (
         <div className="slider-holder">
-
             <div className="link-holder">
                 <Link
                     to={{
@@ -79,8 +76,6 @@ const Slider = (props) => {
                 ></i>
             </div>
 
-
-           
             <div className="slider">{slides}</div>
             <button
                 id="left"
@@ -102,7 +97,6 @@ const Slider = (props) => {
     );
 };
 
-
 const mapStateToProps = (state) => ({
     loading: state.news.loading,
 });
@@ -110,5 +104,3 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { setActiveCategory })(
     withRouter(Slider)
 );
-
-export default withRouter(Slider);
