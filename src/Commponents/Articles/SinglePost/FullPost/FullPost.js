@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import { toggleButtonActive } from "../../../../actions/newsActions";
 
 const FullPost = (props) => {
-<<<<<<< HEAD
+
     const { toggleButtonActive, topNews } = props;
 
     useEffect(() => {
@@ -20,8 +20,7 @@ const FullPost = (props) => {
         };
     }, []);
 
-=======
->>>>>>> 7f8afe59c9822338cf3509dd2517dae1d2fd5537
+
     let fullPost = null;
 
     // populating the fullPostTest with the matching news
