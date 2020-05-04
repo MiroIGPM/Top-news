@@ -37,14 +37,13 @@ export const fetchTopNews = (country, loading) => (dispatch) => {
 };
 
 export const fetchSearchedNews = (country, keyword, loading) => (dispatch) => {
-    if (keyword.length <= 0) return;
+    if (keyword.length < 0) return;
     dispatch(toggleLoading(loading));
     axiosInstance
         .get(
             `?country=${country}&q=${keyword}&apiKey=${process.env.REACT_APP_API_KEY}`
         )
         .then((res) => {
-            console.log(res);
             const posts = res.data.articles;
             const updatePost = posts.map((posts) => {
                 return {

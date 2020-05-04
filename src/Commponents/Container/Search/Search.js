@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 //component import
 import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
@@ -25,16 +25,20 @@ const Search = (props) => {
         fetchSearchedNews,
     } = props;
 
+    // local trigger for check keyPress
+    const [trigger, setTrigger] = useState(false);
+
     // Fetch data on load
     useEffect(() => {
         resetTopNews();
     }, []);
 
+    let e = "Enter";
     // Fetch data on activeCountry prop change
     useEffect(() => {
         if (searchKeyword.length <= 0) return;
         fetchSearchedNews(activeCountry, searchKeyword, loading);
-    }, [activeCountry]);
+    }, [activeCountry, trigger]);
 
     // Setting up country name
     let country = "";
@@ -43,6 +47,12 @@ const Search = (props) => {
     } else if (activeCountry === "GB") {
         country = "Great Britain";
     }
+
+    const triggered = (e) => {
+        if (e.key === "Enter") {
+            setTrigger(!trigger);
+        }
+    };
 
     // Populating thumbnail comp with data
     let searchedNews = topNews.map((article) => {
@@ -69,9 +79,7 @@ const Search = (props) => {
                     placeholder="Search tearm..."
                     className={classes["Input"]}
                     onChange={props.getSearchKeyword}
-                    onBlur={() =>
-                        fetchSearchedNews(activeCountry, searchKeyword, loading)
-                    }
+                    onKeyDown={triggered}
                 ></input>
             </div>
             <div>
