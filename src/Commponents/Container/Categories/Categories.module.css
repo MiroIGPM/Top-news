@@ -22,3 +22,9 @@
     overflow: hidden;
     position: relative;
 }
+
+@media (max-width: 900px) {
+    .Title {
+        margin-left: 15px;
+    }
+}

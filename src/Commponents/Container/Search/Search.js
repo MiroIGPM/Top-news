@@ -26,28 +26,19 @@ const Search = (props) => {
         countryName,
     } = props;
 
-    // local trigger for check keyPress
-    const [trigger, setTrigger] = useState(false);
-
     // Fetch data on load
     useEffect(() => {
         resetTopNews();
     }, []);
 
-    let e = "Enter";
     // Fetch data on activeCountry prop change
     useEffect(() => {
         if (searchKeyword.length <= 0) return;
         fetchSearchedNews(activeCountry, searchKeyword, loading);
-    }, [activeCountry, trigger]);
-
-    const triggered = (e) => {
-        if (e.key === "Enter") {
-            setTrigger(!trigger);
-        }
-    };
+    }, [activeCountry]);
 
     // Populating thumbnail comp with data
+
     const searchedNews = topNews.map((article) => {
         const { id, title, urlToImage, description } = article;
         return (
@@ -60,20 +51,20 @@ const Search = (props) => {
             />
         );
     });
+
     // }
 
     return (
         <Auxiliary>
             <h1
                 className={classes["Title"]}
-            >{`Search top news from ${countryName} by term:`}</h1>
+            >{`Search top news from ${countryName} by term: ${searchKeyword}`}</h1>
             <div className={classes["InputHolder"]}>
                 <input
                     type="text"
                     placeholder="Search tearm..."
                     className={classes["Input"]}
                     onChange={props.getSearchKeyword}
-                    onKeyDown={triggered}
                     onBlur={() =>
                         fetchSearchedNews(activeCountry, searchKeyword, loading)
                     }

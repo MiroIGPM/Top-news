@@ -30,3 +30,20 @@
 .Input:focus {
     box-shadow: 0px 0px 5px 3px #ff3700;
 }
+
+.SearchMessage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SearchMessage h2 {
+    color: #ecf0f1;
+}
+
+@media (max-width: 900px) {
+    .Title {
+        margin-left: 15px;
+    }
+}

@@ -12,7 +12,7 @@ const GridHolder = (props) => {
     if (!props.loading) {
         return (
             <div className={classes["Main"]}>
-                <div className={classes["Grid"]}>{props.children}</div>;
+                <div className={classes["Grid"]}>{props.children}</div>
             </div>
         );
     }

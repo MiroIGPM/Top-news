@@ -16,7 +16,7 @@ import {
 const initalState = {
     topNews: [],
     show: false,
-    searchKeyword: "",
+    searchKeyword: "football",
     activeCountry: "GB",
     countryName: "Great Britain",
     loading: false,

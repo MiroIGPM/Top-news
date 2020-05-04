@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 
+import Error from "../../../UI/Error/Error";
+
 //utils import
 import classes from "./FullPost.module.css";
 import { connect } from "react-redux";
@@ -39,7 +41,7 @@ const FullPost = (props) => {
 
     let render = null;
     if (fullPost === null) {
-        render = <p>SOmething went wrong</p>;
+        render = <Error />;
     } else {
         render = (
             <div className={classes["FullPost"]}>
