@@ -1,0 +1,69 @@
+.TxtMedium {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #ecf0f1;
+}
+
+.Thumbnail {
+    background-color: #39393b;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    transform: scale(0.9);
+    min-height: 550px;
+}
+
+.Thumbnail:hover {
+    transform: translateY(-7px);
+}
+
+.Title {
+    font-size: 19px;
+    color: #ecf0f1;
+}
+
+.ImgContainer {
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden;
+    position: relative;
+}
+
+.ImgContainer img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Content {
+    padding: 20px;
+}
+
+.Description {
+    margin-bottom: 20px;
+}
+
+.BtnHolder {
+    display: flex;
+    align-self: end;
+    align-items: center;
+}
+
+.BtnHolder a {
+    margin-left: auto;
+    text-decoration: none;
+}
+
+.Btn {
+    padding: 7px 15px;
+    background-color: #303032;
+    border-radius: 20px;
+    transition: all 0.4s ease 0s;
+    font-size: 18px;
+}
+
+.Btn:hover {
+    background-color: #ff3700;
+}

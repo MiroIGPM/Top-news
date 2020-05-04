@@ -5,13 +5,15 @@ import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
 import Cockipt from "../../Cockpit/Cockipt";
 import TopNews from "../TopNews/TopNews";
 import Search from "../Search/Search";
+import Categories from "../Categories/Categories";
+import Test from "../Test/Test";
 import FullPost from "../../Articles/SinglePost/FullPost/FullPost";
 import Sidedrawer from "../../Cockpit/Sidedrawer/Sidedrawer";
 
 //utils import11
 import classes from "./NewsHolder.module.css";
 import axios from "axios";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 class NewsHolder extends Component {
@@ -21,11 +23,37 @@ class NewsHolder extends Component {
         this.state = {
             topNews: [],
             activeCountry: "GB",
+            countryName: "Great Britain",
             loading: false,
             searchKeyword: "",
-            show: true,
+            show: false,
+            categories: [
+                "entertainment",
+                "general",
+                "health",
+                "science",
+                "sport",
+                "technology",
+            ],
+            categoryNews: {
+                entertainment: [],
+                general: [],
+                health: [],
+                science: [],
+                technology: [],
+            },
+            activeCategory: "",
         };
     }
+
+    test = () => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                topNews: prevState.categoryNews[prevState.activeCategory],
+            };
+        });
+    };
 
     //Reset news
     resetNews = (prevState) => {
@@ -39,11 +67,11 @@ class NewsHolder extends Component {
     };
 
     // fetchTopNews
-    fetchTopNews = (country) => {
+    fetchTopNews = () => {
         this.setState({ loading: true });
         axios
             .get(
-                `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=185cffc9ba164d9ba9029e9106d9b4c7`
+                `https://newsapi.org/v2/top-headlines?country=${this.state.activeCountry}&apiKey=1d32a8601e374bcb89a2b431f91e8398`
             )
             .then((res) => {
                 const posts = res.data.articles;
@@ -66,11 +94,69 @@ class NewsHolder extends Component {
     };
 
     //fetch searched news
-    fetchSearchedNews = (country, keyword) => {
+    fetchSearchedNews = () => {
         this.setState({ loading: true });
         axios
             .get(
-                `https://newsapi.org/v2/top-headlines?country=${country}&q=${keyword}&apiKey=185cffc9ba164d9ba9029e9106d9b4c7`
+                `https://newsapi.org/v2/top-headlines?country=${this.state.activeCountry}&q=${this.state.searchKeyword}&apiKey=1d32a8601e374bcb89a2b431f91e8398`
+            )
+            .then((res) => {
+                const posts = res.data.articles;
+                const updatePost = posts.map((posts) => {
+                    return {
+                        ...posts,
+                        id: uuidv4(),
+                    };
+                });
+                this.setState((prevState) => {
+                    return {
+                        ...prevState,
+                        totalResults: res.data.totalResults,
+                        topNews: updatePost,
+                        loading: false,
+                    };
+                });
+            })
+            .catch((err) => console.log(err));
+    };
+
+    //fetch news by category
+    fetchCategoryNews = () => {
+        const categories = this.state.categories;
+
+        categories.forEach((category) => {
+            axios
+                .get(
+                    `https://newsapi.org/v2/top-headlines?country=${this.state.activeCountry}&category=${category}&apiKey=1d32a8601e374bcb89a2b431f91e8398`
+                )
+                .then((res) => {
+                    const posts = res.data.articles;
+                    const updatePost = posts.map((posts) => {
+                        return {
+                            ...posts,
+                            id: uuidv4(),
+                            category: category,
+                        };
+                    });
+
+                    let categoryNews = { ...this.state.categoryNews };
+                    categoryNews[category] = updatePost;
+                    this.setState((prevState) => {
+                        return {
+                            ...prevState,
+                            categoryNews: categoryNews,
+                        };
+                    });
+                });
+        });
+    };
+
+    //fetch searched news
+    fetchSingleCategory = (category) => {
+        this.setState({ loading: true });
+        axios
+            .get(
+                `https://newsapi.org/v2/top-headlines?country=${this.state.activeCountry}&category=${category}&apiKey=1d32a8601e374bcb89a2b431f91e8398`
             )
             .then((res) => {
                 const posts = res.data.articles;
@@ -94,7 +180,15 @@ class NewsHolder extends Component {
 
     //change country function
     changeCountryHandler = (e) => {
-        this.setState({ activeCountry: e.target.textContent });
+        let activeCountry = e.target.textContent;
+        let countryName = "Great Britain";
+        if (activeCountry === "US") {
+            countryName = "United States";
+        }
+        this.setState({
+            activeCountry: activeCountry,
+            countryName: countryName,
+        });
     };
 
     //change search keyword
@@ -103,7 +197,14 @@ class NewsHolder extends Component {
         this.setState((prevState) => {
             return { ...prevState, searchKeyword: searchValue };
         });
-        console.log(this.state.searchKeyword);
+    };
+
+    //change active category
+    changeCategoryHandler = (e) => {
+        let activeCategory = e.target.textContent;
+        this.setState((prevState) => {
+            return { ...prevState, activeCategory: activeCategory };
+        });
     };
 
     sideDrawerToggleHandler = () => {
@@ -112,6 +213,15 @@ class NewsHolder extends Component {
             return {
                 ...prevState,
                 show: !show,
+            };
+        });
+    };
+
+    resetActiveCategory = () => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                activeCategory: "",
             };
         });
     };
@@ -131,20 +241,48 @@ class NewsHolder extends Component {
                         show={this.state.show}
                         changeShow={this.sideDrawerToggleHandler}
                     />
+
                     <Switch>
-                        {/* Index route */}
+                        {/* Index (Top news) route */}
+
                         <Route
                             exact
                             path="/"
                             render={() => (
                                 <TopNews
                                     activeCountry={activeCountry}
+                                    countryName={this.state.countryName}
                                     fetchTopNews={this.fetchTopNews}
                                     topNews={this.state.topNews}
                                     loading={this.state.loading}
+                                    activeCategory={this.state.activeCategory}
+                                    fetchSingleCategory={
+                                        this.fetchSingleCategory
+                                    }
+                                    resetActiveCategory={
+                                        this.resetActiveCategory
+                                    }
                                 />
                             )}
                         />
+                        <Route
+                            exact
+                            path="/categories/test"
+                            render={() => (
+                                <Test
+                                    test={this.test}
+                                    topNews={this.state.topNews}
+                                />
+                            )}
+                        />
+                        {/* Single post route */}
+                        <Route
+                            path={`/news/:id`}
+                            render={() => (
+                                <FullPost topNews={this.state.topNews} />
+                            )}
+                        />
+
                         {/* search route */}
                         <Route
                             path="/search"
@@ -156,17 +294,27 @@ class NewsHolder extends Component {
                                     }
                                     resetNews={this.resetNews}
                                     activeCountry={this.state.activeCountry}
+                                    countryName={this.state.countryName}
                                     searchKeyword={this.state.searchKeyword}
                                     topNews={this.state.topNews}
                                     loading={this.state.loading}
                                 />
                             )}
                         />
-                        {/* Single post route */}
+
+                        {/* Categories route */}
                         <Route
-                            path="/:id"
+                            path="/categories"
                             render={() => (
-                                <FullPost topNews={this.state.topNews} />
+                                <Categories
+                                    fetch={this.fetchCategoryNews}
+                                    categoryNews={this.state.categoryNews}
+                                    activeCountry={this.state.activeCountry}
+                                    activeCategory={this.state.activeCategory}
+                                    loading={this.state.loading}
+                                    changeCategory={this.changeCategoryHandler}
+                                    test={this.test}
+                                />
                             )}
                         />
                     </Switch>
@@ -176,4 +324,4 @@ class NewsHolder extends Component {
     }
 }
 
-export default NewsHolder;
+export default withRouter(NewsHolder);

@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
 import GridHolder from "../../UI/GridHolder/GridHolder";
 import Thumbnail from "../../Articles/SinglePost/Thumbnail/Thumbnail";
-import Spinner from "../../UI/Spinner/Spinner";
 
 // //utils import
 import classes from "./Search.module.css";
@@ -15,25 +14,12 @@ class Search extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (
-            this.props.activeCountry !== prevProps.activeCountry &&
-            this.props.topNews.length > 0
-        ) {
-            this.props.search(
-                this.props.activeCountry,
-                this.props.searchKeyword
-            );
+        if (this.props.activeCountry !== prevProps.activeCountry) {
+            this.props.search();
         }
     }
 
     render() {
-        let country = "";
-        if (this.props.activeCountry === "US") {
-            country = "United States";
-        } else if (this.props.activeCountry === "GB") {
-            country = "Great Britain";
-        }
-
         let searchedNews = this.props.topNews.map((article) => {
             const { id, title, urlToImage, description } = article;
             return (
@@ -47,31 +33,25 @@ class Search extends Component {
             );
         });
 
-        let fetchedNews = <Spinner />;
-        if (!this.props.loading) {
-            fetchedNews = <GridHolder>{searchedNews}</GridHolder>;
-        }
-
         return (
             <Auxiliary>
                 <h1
                     className={classes["Title"]}
-                >{`Search top news from ${country} by term:`}</h1>
+                >{`Search top news from ${this.props.countryName} by term:`}</h1>
                 <div className={classes["InputHolder"]}>
                     <input
                         type="text"
                         placeholder="Search tearm..."
                         className={classes["Input"]}
                         onChange={this.props.handleInput}
-                        onBlur={() =>
-                            this.props.search(
-                                this.props.activeCountry,
-                                this.props.searchKeyword
-                            )
-                        }
+                        onBlur={this.props.search}
                     ></input>
                 </div>
-                <div>{fetchedNews}</div>
+                <div>
+                    <GridHolder loading={this.props.loading}>
+                        {searchedNews}
+                    </GridHolder>
+                </div>
             </Auxiliary>
         );
     }

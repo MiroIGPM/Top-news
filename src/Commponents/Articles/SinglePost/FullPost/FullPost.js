@@ -5,7 +5,6 @@ import classes from "./FullPost.module.css";
 import { withRouter } from "react-router-dom";
 
 const FullPost = (props) => {
-    console.log("props");
     let fullPost = null;
 
     // populating the fullPostTest with the matching news
@@ -15,6 +14,10 @@ const FullPost = (props) => {
         }
         return fullPost;
     });
+
+    const goBack = () => {
+        props.history.goBack();
+    };
 
     let render = null;
     if (fullPost === null) {
@@ -29,7 +32,7 @@ const FullPost = (props) => {
                 <div className={classes["Content"]}>
                     <p>{fullPost.content}</p>
                 </div>
-                <div className={classes["BtnHolder"]}>
+                <div onClick={goBack} className={classes["BtnHolder"]}>
                     <p className={classes["Btn"]}>Back to list</p>
                 </div>
             </div>
