@@ -1,13 +1,15 @@
 import React from "react";
+
+// utils import
+import classes from "./DrawerToggle.module.css";
 import { connect } from "react-redux";
 import { toggleSidedrawer } from "../../../../actions/newsActions";
-
-import classes from "./DrawerToggle.module.css";
 
 const DrawerToggle = (props) => {
     return (
         <div
             className={classes["DrawerToggle"]}
+            // Toggle open/close side menu
             onClick={() => props.toggleSidedrawer(props.show)}
         >
             <div></div>
@@ -17,6 +19,7 @@ const DrawerToggle = (props) => {
     );
 };
 
+// Importing state from newsReducer
 const mapStateToProps = (state) => ({
     show: state.news.show,
 });

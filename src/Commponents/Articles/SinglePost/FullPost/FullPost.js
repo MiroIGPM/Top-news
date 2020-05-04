@@ -7,19 +7,20 @@ import { withRouter } from "react-router-dom";
 import { toggleButtonActive } from "../../../../actions/newsActions";
 
 const FullPost = (props) => {
-
+    // Destructuring props
     const { toggleButtonActive, topNews } = props;
 
+    // Setting disable country selection button true on load
     useEffect(() => {
         toggleButtonActive(true);
     }, []);
 
+    // Setting disable country selection button to false on unload
     useEffect(() => {
         return () => {
             toggleButtonActive(false);
         };
     }, []);
-
 
     let fullPost = null;
 
@@ -31,6 +32,7 @@ const FullPost = (props) => {
         return fullPost;
     });
 
+    // go back to previous url location
     const goBack = () => {
         props.history.goBack();
     };
@@ -58,6 +60,7 @@ const FullPost = (props) => {
     return <div>{render}</div>;
 };
 
+// Importing state from newsReducer
 const mapStateToProps = (state) => ({
     topNews: state.news.topNews,
 });

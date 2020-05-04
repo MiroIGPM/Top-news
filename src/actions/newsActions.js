@@ -11,9 +11,12 @@ import {
     TOGGLE_BUTTON_ACTIVE,
     HANDLE_ERROR,
 } from "./types";
+
+//Import utils
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
+//API KEY
 const urlKey = "3f5f5ef8205341bb966c9c1bfa77fd50";
 
 export const fetchTopNews = (country, loading) => (dispatch) => {

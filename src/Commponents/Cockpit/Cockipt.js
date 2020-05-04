@@ -4,12 +4,11 @@ import React from "react";
 import Navigation from "./Navigation/Navigation";
 import ContrySelector from "./CountrySelector/CountrySelector";
 import DrawerToggle from "../Cockpit/Sidedrawer/DrawerToggle/DrawerToggle";
+
 //utils import
 import classes from "./Cockpit.module.css";
 
 const Cockipt = (props) => {
-    const { changeCoutry } = props;
-
     return (
         <div className={classes["Cockpit"]}>
             <div>
@@ -18,7 +17,7 @@ const Cockipt = (props) => {
                     <Navigation />
                 </div>
 
-                <ContrySelector clicked={changeCoutry} />
+                <ContrySelector />
             </div>
         </div>
     );

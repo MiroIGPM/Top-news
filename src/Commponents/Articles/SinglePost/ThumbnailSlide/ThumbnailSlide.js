@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import classes from "./ThumbnailSlide.module.css";
 
 const ThumbnailSlide = (props) => {
+    // Destructuring porps
     const { id, title, urlToImage, description } = props;
 
     return (
@@ -14,6 +15,7 @@ const ThumbnailSlide = (props) => {
                 <img src={urlToImage} alt="News" />
             </div>
             <div className={classes["Content"]}>
+                {/** Seting desc text based on fetch desc length */}
                 {description == null || description.length <= 0 ? (
                     <p
                         className={[

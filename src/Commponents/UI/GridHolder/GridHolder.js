@@ -1,5 +1,6 @@
 import React from "react";
 
+// component import
 import Spinner from "../Spinner/Spinner";
 
 //utils import
@@ -15,10 +16,10 @@ const GridHolder = (props) => {
             </div>
         );
     }
-
     return <div>{gridHolder}</div>;
 };
 
+// import state from newsReducer
 const mapStateToProps = (state) => ({
     loading: state.news.loading,
 });

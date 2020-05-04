@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { setActiveCountry } from "../../../actions/newsActions";
 
 const CountrySelector = (props) => {
+    // Destructuring props
     const { buttonActive, activeCountry } = props;
 
     return (
@@ -28,6 +29,7 @@ const CountrySelector = (props) => {
     );
 };
 
+// Importing state from newsReducer
 const mapStateToProps = (state) => ({
     buttonActive: state.news.buttonActive,
     activeCountry: state.news.activeCountry,

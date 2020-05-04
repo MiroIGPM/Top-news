@@ -1,21 +1,17 @@
-
 import React, { useEffect } from "react";
-
 
 //component import
 import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
 import Slider from "../../UI/Slider/Slider";
-
 import Spinner from "../../UI/Spinner/Spinner";
 
+//utils import
 import classes from "./Categories.module.css";
-
 import { connect } from "react-redux";
 import { fetchCategories, resetTopNews } from "../../../actions/newsActions";
 
-//utils import
-
 const Categories = (props) => {
+    // Destructuring props
     const {
         fetchCategories,
         categories,
@@ -25,11 +21,13 @@ const Categories = (props) => {
         resetTopNews,
     } = props;
 
+    // Trigger fetch on load and on activeCountry prop change
     useEffect(() => {
         resetTopNews();
         fetchCategories(categories, activeCountry, loading);
     }, [activeCountry]);
 
+    // Pupulating slider components with fetched data
     const key = categories.map((category) => {
         let article = [];
         topNews.forEach((news) => {
@@ -38,6 +36,7 @@ const Categories = (props) => {
         return <Slider categoryNews={article} category={category} />;
     });
 
+    // Setting up render component based on loading prop
     let render = <Spinner />;
     if (!loading) {
         render = <div className={classes["Categories"]}>{key}</div>;
@@ -53,6 +52,7 @@ const Categories = (props) => {
     );
 };
 
+// importing state from newsReducer
 const mapStateToProps = (state) => ({
     topNews: state.news.topNews,
     activeCountry: state.news.activeCountry,
@@ -64,7 +64,3 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { fetchCategories, resetTopNews })(
     Categories
 );
-
-
-
-

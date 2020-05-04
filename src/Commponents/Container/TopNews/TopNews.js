@@ -4,11 +4,10 @@ import React, { useEffect } from "react";
 import Thumbnail from "../../Articles/SinglePost/Thumbnail/Thumbnail";
 import GridHolder from "../../UI/GridHolder/GridHolder";
 
-//utils import11
+//utils import
 import classes from "./TopNews.module.css";
 import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
 import { withRouter } from "react-router-dom";
-
 import { connect } from "react-redux";
 import {
     fetchTopNews,
@@ -18,6 +17,7 @@ import {
 } from "../../../actions/newsActions";
 
 const TopNews = (props) => {
+    //Destructuring props
     const {
         activeCountry,
         topNews,
@@ -29,6 +29,7 @@ const TopNews = (props) => {
         error,
     } = props;
 
+    // Fetch data on load
     useEffect(() => {
         if (activeCategory.length === 0) {
             fetchTopNews(activeCountry, loading);
@@ -37,6 +38,7 @@ const TopNews = (props) => {
         }
     }, []);
 
+    // Fetch data on activeCountry prop change
     useEffect(() => {
         if (activeCategory.length === 0) {
             fetchTopNews(activeCountry, loading);
@@ -45,12 +47,14 @@ const TopNews = (props) => {
         }
     }, [activeCountry]);
 
+    // Reset activCategory on unload
     useEffect(() => {
         return () => {
             resetCategory();
         };
     }, []);
 
+    // Setting up title
     let country = "";
     if (activeCountry === "US") {
         country = "United States";
@@ -62,6 +66,7 @@ const TopNews = (props) => {
         title = `Top  ${activeCategory} from ${country}`;
     }
 
+    // Populating Thumbnail component with fetched data
     const topNewsArticles = topNews.map((article) => {
         const { id, title, urlToImage, description } = article;
         return (
@@ -75,6 +80,7 @@ const TopNews = (props) => {
         );
     });
 
+    // Local error handling
     let handleError = <h1>SOMETHING WENT WRONG</h1>;
     if (!error) {
         handleError = <GridHolder>{topNewsArticles}</GridHolder>;
@@ -88,6 +94,7 @@ const TopNews = (props) => {
     );
 };
 
+// Import state from newsReducer
 const mapStateToProps = (state) => ({
     topNews: state.news.topNews,
     activeCountry: state.news.activeCountry,

@@ -5,6 +5,7 @@ import classes from "./Thumbnail.module.css";
 import { Link, withRouter } from "react-router-dom";
 
 const Thumbnail = (props) => {
+    // Destructuring props
     const { id, title, urlToImage, description } = props;
 
     return (
@@ -16,6 +17,7 @@ const Thumbnail = (props) => {
                 <img src={urlToImage} alt="News" />
             </div>
             <div className={classes["Content"]}>
+                {/** Seting desc text based on fetch desc length */}
                 {description == null || description.length <= 0 ? (
                     <p
                         className={[

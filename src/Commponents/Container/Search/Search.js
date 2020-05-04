@@ -15,6 +15,7 @@ import {
 } from "../../../actions/newsActions";
 
 const Search = (props) => {
+    //Destructuring props
     const {
         activeCountry,
         searchKeyword,
@@ -24,21 +25,26 @@ const Search = (props) => {
         fetchSearchedNews,
     } = props;
 
+    // Fetch data on load
     useEffect(() => {
         resetTopNews();
     }, []);
 
+    // Fetch data on activeCountry prop change
     useEffect(() => {
         if (searchKeyword.length <= 0) return;
         fetchSearchedNews(activeCountry, searchKeyword, loading);
     }, [activeCountry]);
 
+    // Setting up country name
     let country = "";
     if (activeCountry === "US") {
         country = "United States";
     } else if (activeCountry === "GB") {
         country = "Great Britain";
     }
+
+    // Populating thumbnail comp with data
     let searchedNews = topNews.map((article) => {
         const { id, title, urlToImage, description } = article;
         return (
@@ -75,6 +81,7 @@ const Search = (props) => {
     );
 };
 
+//importing state from newsReducer
 const mapStateToProps = (state) => ({
     topNews: state.news.topNews,
     searchKeyword: state.news.searchKeyword,
