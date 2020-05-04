@@ -4,8 +4,11 @@ import ThumbnailSlide from "../../Articles/SinglePost/ThumbnailSlide/ThumbnailSl
 
 import "./Slider.css";
 import { Link, withRouter } from "react-router-dom";
+<<<<<<< HEAD
 import { connect } from "react-redux";
 import { setActiveCategory } from "../../../actions/newsActions";
+=======
+>>>>>>> 7f8afe59c9822338cf3509dd2517dae1d2fd5537
 
 const Slider = (props) => {
     const [x, setX] = useState(0);
@@ -17,7 +20,10 @@ const Slider = (props) => {
         let sliceIndex = -1;
         if (slice < 0) {
             sliceIndex = 5;
+<<<<<<< HEAD
             setX(0);
+=======
+>>>>>>> 7f8afe59c9822338cf3509dd2517dae1d2fd5537
         }
         setSlice(sliceIndex);
     };
@@ -56,6 +62,7 @@ const Slider = (props) => {
 
     return (
         <div className="slider-holder">
+<<<<<<< HEAD
             <div className="link-holder">
                 <Link
                     to={{
@@ -74,6 +81,23 @@ const Slider = (props) => {
                 ></i>
             </div>
 
+=======
+            <Link
+                to={{
+                    pathname: "/",
+                    state: { from: props.location.pathname },
+                }}
+            >
+                <p className="subtite" onClick={props.clicked}>
+                    {props.category}
+                    <i
+                        class="fa fa-expand"
+                        aria-hidden="true"
+                        onClick={showAll}
+                    ></i>
+                </p>
+            </Link>
+>>>>>>> 7f8afe59c9822338cf3509dd2517dae1d2fd5537
             <div className="slider">{slides}</div>
             <button
                 id="left"
@@ -95,6 +119,7 @@ const Slider = (props) => {
     );
 };
 
+<<<<<<< HEAD
 const mapStateToProps = (state) => ({
     loading: state.news.loading,
 });
@@ -102,3 +127,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { setActiveCategory })(
     withRouter(Slider)
 );
+=======
+export default withRouter(Slider);
+>>>>>>> 7f8afe59c9822338cf3509dd2517dae1d2fd5537
