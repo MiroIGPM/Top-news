@@ -51,9 +51,13 @@ const Slider = (props) => {
     // Populating thumbnail comp with passed data from categories comp
     const slides = news.map((slide) => {
         const { id, title, urlToImage, description } = slide;
-        console.log(screenWidth);
+
         return (
-            <div className="slide" style={{ transform: `translateX(${x}%)` }}>
+            <div
+                key={id}
+                className="slide"
+                style={{ transform: `translateX(${x}%)` }}
+            >
                 <ThumbnailSlide
                     key={id}
                     id={id}
@@ -87,7 +91,7 @@ const Slider = (props) => {
                 onClick={previous}
                 disabled={x === 0}
             >
-                <i class="fas fa-angle-left"></i>
+                <i className="fas fa-angle-left"></i>
             </button>
             <button
                 id="right"
@@ -95,7 +99,7 @@ const Slider = (props) => {
                 onClick={next}
                 disabled={x === disabled}
             >
-                <i class="fas fa-angle-right"></i>
+                <i className="fas fa-angle-right"></i>
             </button>
         </div>
     );

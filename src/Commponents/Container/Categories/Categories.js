@@ -28,12 +28,14 @@ const Categories = (props) => {
     }, [activeCountry]);
 
     // Pupulating slider components with fetched data
-    const key = categories.map((category) => {
+    const key = categories.map((category, index) => {
         let article = [];
         topNews.forEach((news) => {
             if (news.category === category) article.push(news);
         });
-        return <Slider categoryNews={article} category={category} />;
+        return (
+            <Slider key={index} categoryNews={article} category={category} />
+        );
     });
 
     // Setting up render component based on loading prop

@@ -51,7 +51,13 @@ const FullPost = (props) => {
                     <p>{fullPost.content}</p>
                 </div>
                 <div onClick={goBack} className={classes["BtnHolder"]}>
-                    <p className={classes["Btn"]}>Back to list</p>
+                    <p className={classes["Btn"]}>
+                        <i
+                            style={{ marginLeft: "5px" }}
+                            className="fas fa-angle-left"
+                        ></i>
+                        Back to list
+                    </p>
                 </div>
             </div>
         );

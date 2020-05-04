@@ -46,7 +46,7 @@ const Thumbnail = (props) => {
                                 classes["Btn"],
                             ].join(" ")}
                         >
-                            More
+                            More <i className="fas fa-angle-right"></i>
                         </p>
                     </Link>
                 </div>

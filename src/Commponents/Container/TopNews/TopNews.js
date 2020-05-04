@@ -26,7 +26,7 @@ const TopNews = (props) => {
         fetchTopNews,
         fetchSingleCategory,
         resetCategory,
-        error,
+        countryName,
     } = props;
 
     // Fetch data on load
@@ -55,15 +55,9 @@ const TopNews = (props) => {
     }, []);
 
     // Setting up title
-    let country = "";
-    if (activeCountry === "US") {
-        country = "United States";
-    } else if (activeCountry === "GB") {
-        country = "Great Britain";
-    }
-    let title = `Top news from ${country}`;
+    let title = `Top news from ${countryName}`;
     if (activeCategory.length > 0) {
-        title = `Top  ${activeCategory} from ${country}`;
+        title = `Top  ${activeCategory} from ${countryName}`;
     }
 
     // Populating Thumbnail component with fetched data
@@ -80,16 +74,10 @@ const TopNews = (props) => {
         );
     });
 
-    // Local error handling
-    let handleError = <h1>SOMETHING WENT WRONG</h1>;
-    if (!error) {
-        handleError = <GridHolder>{topNewsArticles}</GridHolder>;
-    }
-
     return (
         <Auxiliary>
             <h1 className={classes["Title"]}>{title}</h1>
-            {handleError}
+            <GridHolder>{topNewsArticles}</GridHolder>
         </Auxiliary>
     );
 };
@@ -101,6 +89,7 @@ const mapStateToProps = (state) => ({
     loading: state.news.loading,
     activeCategory: state.news.activeCategory,
     error: state.news.error,
+    countryName: state.news.countryName,
 });
 
 export default connect(mapStateToProps, {

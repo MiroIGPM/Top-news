@@ -23,6 +23,7 @@ const Search = (props) => {
         topNews,
         resetTopNews,
         fetchSearchedNews,
+        countryName,
     } = props;
 
     // local trigger for check keyPress
@@ -40,14 +41,6 @@ const Search = (props) => {
         fetchSearchedNews(activeCountry, searchKeyword, loading);
     }, [activeCountry, trigger]);
 
-    // Setting up country name
-    let country = "";
-    if (activeCountry === "US") {
-        country = "United States";
-    } else if (activeCountry === "GB") {
-        country = "Great Britain";
-    }
-
     const triggered = (e) => {
         if (e.key === "Enter") {
             setTrigger(!trigger);
@@ -55,7 +48,7 @@ const Search = (props) => {
     };
 
     // Populating thumbnail comp with data
-    let searchedNews = topNews.map((article) => {
+    const searchedNews = topNews.map((article) => {
         const { id, title, urlToImage, description } = article;
         return (
             <Thumbnail
@@ -67,12 +60,13 @@ const Search = (props) => {
             />
         );
     });
+    // }
 
     return (
         <Auxiliary>
             <h1
                 className={classes["Title"]}
-            >{`Search top news from ${country} by term:`}</h1>
+            >{`Search top news from ${countryName} by term:`}</h1>
             <div className={classes["InputHolder"]}>
                 <input
                     type="text"
@@ -80,6 +74,9 @@ const Search = (props) => {
                     className={classes["Input"]}
                     onChange={props.getSearchKeyword}
                     onKeyDown={triggered}
+                    onBlur={() =>
+                        fetchSearchedNews(activeCountry, searchKeyword, loading)
+                    }
                 ></input>
             </div>
             <div>
@@ -95,6 +92,7 @@ const mapStateToProps = (state) => ({
     searchKeyword: state.news.searchKeyword,
     activeCountry: state.news.activeCountry,
     loading: state.news.loading,
+    countryName: state.news.countryName,
 });
 
 export default connect(mapStateToProps, {

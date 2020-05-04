@@ -37,7 +37,7 @@ export const fetchTopNews = (country, loading) => (dispatch) => {
 };
 
 export const fetchSearchedNews = (country, keyword, loading) => (dispatch) => {
-    if (keyword.length < 0) return;
+    if (keyword.length <= 0) return;
     dispatch(toggleLoading(loading));
     axiosInstance
         .get(
@@ -144,10 +144,10 @@ export const toggleSidedrawer = (show) => (dispatch) => {
     });
 };
 
-export const setActiveCountry = (country) => (dispatch) => {
+export const setActiveCountry = (country, countryName) => (dispatch) => {
     dispatch({
         type: SET_ACTIVE_COUNTRY,
-        payload: country,
+        payload: { country, countryName },
     });
 };
 

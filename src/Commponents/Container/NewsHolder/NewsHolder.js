@@ -8,6 +8,7 @@ import Search from "../Search/Search";
 import Categories from "../Categories/Categories";
 import FullPost from "../../Articles/SinglePost/FullPost/FullPost";
 import Sidedrawer from "../../Cockpit/Sidedrawer/Sidedrawer";
+import Error from "../../UI/Error/Error";
 
 //utils import11
 import classes from "./NewsHolder.module.css";
@@ -15,8 +16,9 @@ import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 const NewsHolder = (props) => {
-    return (
-        <Auxiliary>
+    let newsHolder = <Error />;
+    if (!props.error) {
+        newsHolder = (
             <div className={classes["NewsHolder"]}>
                 <Cockipt />
                 <Sidedrawer />
@@ -32,8 +34,14 @@ const NewsHolder = (props) => {
                     <Route path="/categories" component={Categories} />
                 </Switch>
             </div>
-        </Auxiliary>
-    );
+        );
+    }
+
+    return <Auxiliary>{newsHolder}</Auxiliary>;
 };
 
-export default connect(null)(NewsHolder);
+const mapStateToProps = (state) => ({
+    error: state.news.error,
+});
+
+export default connect(mapStateToProps)(NewsHolder);

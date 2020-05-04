@@ -13,14 +13,14 @@ const CountrySelector = (props) => {
         <div className={classes["CountySelector"]}>
             <button
                 className={activeCountry === "GB" ? classes["Active"] : ""}
-                onClick={() => props.setActiveCountry("GB")}
+                onClick={() => props.setActiveCountry("GB", "Great Britain")}
                 disabled={buttonActive}
             >
                 GB
             </button>
             <button
                 className={activeCountry === "US" ? classes["Active"] : ""}
-                onClick={() => props.setActiveCountry("US")}
+                onClick={() => props.setActiveCountry("US", "United States")}
                 disabled={buttonActive}
             >
                 US

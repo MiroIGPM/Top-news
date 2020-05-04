@@ -28,7 +28,7 @@ const initalState = {
         "sport",
         "technology",
     ],
-    activeCategory: "sport",
+    activeCategory: "",
     buttonActive: false,
     error: false,
 };
@@ -67,7 +67,8 @@ export default function (state = initalState, actions) {
         case SET_ACTIVE_COUNTRY:
             return {
                 ...state,
-                activeCountry: actions.payload,
+                activeCountry: actions.payload.country,
+                countryName: actions.payload.countryName,
             };
         case TOGGLE_SIDEDRAWER:
             return {
