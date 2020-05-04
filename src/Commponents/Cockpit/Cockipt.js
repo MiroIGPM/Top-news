@@ -13,7 +13,7 @@ const Cockipt = (props) => {
     return (
         <div className={classes["Cockpit"]}>
             <div>
-                <DrawerToggle clicked={props.changeShow} />
+                <DrawerToggle />
                 <div className={classes["DisplayNone"]}>
                     <Navigation />
                 </div>

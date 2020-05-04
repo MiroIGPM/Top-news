@@ -8,16 +8,22 @@ import NewsHolder from "./Commponents/Container/NewsHolder/NewsHolder";
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
 
+import { Provider } from "react-redux";
+
+import store from "./store";
+
 class App extends Component {
     render() {
         return (
-            <div>
-                <Layout>
-                    <Router>
-                        <NewsHolder />
-                    </Router>
-                </Layout>
-            </div>
+            <Provider store={store}>
+                <div>
+                    <Layout>
+                        <Router>
+                            <NewsHolder />
+                        </Router>
+                    </Layout>
+                </div>
+            </Provider>
         );
     }
 }

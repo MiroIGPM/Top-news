@@ -1,10 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import classes from "./ThumbnailSlide.module.css";
 
-//utils import
-import classes from "./Thumbnail.module.css";
-import { Link, withRouter } from "react-router-dom";
-
-const Thumbnail = (props) => {
+const ThumbnailSlide = (props) => {
     const { id, title, urlToImage, description } = props;
 
     return (
@@ -53,4 +51,4 @@ const Thumbnail = (props) => {
     );
 };
 
-export default withRouter(Thumbnail);
+export default ThumbnailSlide;

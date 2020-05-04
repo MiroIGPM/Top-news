@@ -1,11 +1,12 @@
 import React from "react";
 
 import Navigation from "../Navigation/Navigation";
-import CountrySelector from "../CountrySelector/CountrySelector";
+
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
 
 import classes from "./Sidedrawer.module.css";
+import { connect } from "react-redux";
 
 const Sidedrawer = (props) => {
     let attachedClasses = [classes["Sidedrawer"], classes["Close"]];
@@ -15,13 +16,16 @@ const Sidedrawer = (props) => {
 
     return (
         <Auxiliary>
-            <Backdrop clicked={props.changeShow} show={props.show} />
+            <Backdrop />
             <div className={attachedClasses.join(" ")}>
                 <Navigation />
-                {/* <CountrySelector /> */}
             </div>
         </Auxiliary>
     );
 };
 
-export default Sidedrawer;
+const mapStateToProps = (state) => ({
+    show: state.news.show,
+});
+
+export default connect(mapStateToProps)(Sidedrawer);

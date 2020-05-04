@@ -2,13 +2,22 @@
     display: flex;
 }
 
-.CountySelector div {
+.CountySelector .Active {
+    background-color: #ff3700;
+}
+
+.CountySelector button {
     padding: 10px 15px;
     transition: background-color 0.3s ease-in;
     font-size: 20px;
+    background-color: #39393b;
+    border: none;
+    color: #ecf0f1;
 }
 
-.CountySelector div:hover {
+.CountySelector button:hover,
+.CountySelector button:focus {
     background-color: #ff3700;
     cursor: pointer;
+    outline: none;
 }

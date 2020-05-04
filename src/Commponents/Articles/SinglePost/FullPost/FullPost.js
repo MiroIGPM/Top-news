@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 //utils import
 import classes from "./FullPost.module.css";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { toggleButtonActive } from "../../../../actions/newsActions";
 
 const FullPost = (props) => {
-    console.log("props");
+    const { toggleButtonActive, topNews } = props;
+
+    useEffect(() => {
+        toggleButtonActive(true);
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            toggleButtonActive(false);
+        };
+    }, []);
+
     let fullPost = null;
 
     // populating the fullPostTest with the matching news
-    props.topNews.map((news) => {
+    topNews.map((news) => {
         if (news.id === props.match.params.id) {
             fullPost = news;
         }
         return fullPost;
     });
+
+    const goBack = () => {
+        props.history.goBack();
+    };
 
     let render = null;
     if (fullPost === null) {
@@ -29,7 +46,7 @@ const FullPost = (props) => {
                 <div className={classes["Content"]}>
                     <p>{fullPost.content}</p>
                 </div>
-                <div className={classes["BtnHolder"]}>
+                <div onClick={goBack} className={classes["BtnHolder"]}>
                     <p className={classes["Btn"]}>Back to list</p>
                 </div>
             </div>
@@ -39,4 +56,10 @@ const FullPost = (props) => {
     return <div>{render}</div>;
 };
 
-export default withRouter(FullPost);
+const mapStateToProps = (state) => ({
+    topNews: state.news.topNews,
+});
+
+export default connect(mapStateToProps, { toggleButtonActive })(
+    withRouter(FullPost)
+);
