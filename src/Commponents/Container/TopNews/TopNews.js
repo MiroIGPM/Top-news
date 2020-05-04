@@ -8,7 +8,7 @@ import GridHolder from "../../UI/GridHolder/GridHolder";
 import classes from "./TopNews.module.css";
 import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
 import { withRouter } from "react-router-dom";
-<<<<<<< HEAD
+
 import { connect } from "react-redux";
 import {
     fetchTopNews,
@@ -34,32 +34,7 @@ const TopNews = (props) => {
             fetchTopNews(activeCountry, loading);
         } else {
             fetchSingleCategory(activeCountry, activeCategory);
-=======
 
-class TopNews extends Component {
-    // componentDidMount() {
-
-    //     if (this.props.activeCategory.length === 0) {
-    //         this.fetchTopNews();
-    //         } else if (this.props.location.state.from === "/categories") {
-    //             console.log("Sdadasdsads");
-    //         }
-    //     }
-    // }
-
-    componentDidMount() {
-        if (this.props.activeCategory.length === 0) {
-            this.props.fetchTopNews();
-        } else {
-            this.props.fetchSingleCategory(this.props.activeCategory);
-        }
-        this.props.resetActiveCategory();
-    }
-    componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
-        if (this.props.activeCountry !== prevProps.activeCountry) {
-            this.props.fetchTopNews();
->>>>>>> 7f8afe59c9822338cf3509dd2517dae1d2fd5537
         }
     }, []);
 
@@ -71,27 +46,14 @@ class TopNews extends Component {
         }
     }, [activeCountry]);
 
-<<<<<<< HEAD
+
     useEffect(() => {
         return () => {
             resetCategory();
         };
     }, []);
-=======
-        // maping over fetched data
-        const topNewsArticles = this.props.topNews.map((article) => {
-            const { id, title, urlToImage, description } = article;
-            return (
-                <Thumbnail
-                    key={id}
-                    id={id}
-                    title={title}
-                    urlToImage={urlToImage}
-                    description={description}
-                />
-            );
-        });
->>>>>>> 7f8afe59c9822338cf3509dd2517dae1d2fd5537
+
+        
 
     let country = "";
     if (activeCountry === "US") {
@@ -107,7 +69,7 @@ class TopNews extends Component {
     const topNewsArticles = topNews.map((article) => {
         const { id, title, urlToImage, description } = article;
         return (
-<<<<<<< HEAD
+
             <Thumbnail
                 key={id}
                 id={id}
@@ -115,16 +77,6 @@ class TopNews extends Component {
                 urlToImage={urlToImage}
                 description={description}
             />
-=======
-            <Auxiliary>
-                <h1
-                    className={classes["Title"]}
-                >{`Top news from ${this.props.countryName}`}</h1>
-                <GridHolder loading={this.props.loading}>
-                    {topNewsArticles}
-                </GridHolder>
-            </Auxiliary>
->>>>>>> 7f8afe59c9822338cf3509dd2517dae1d2fd5537
         );
     });
 
@@ -133,7 +85,7 @@ class TopNews extends Component {
         handleError = <GridHolder>{topNewsArticles}</GridHolder>;
     }
 
-<<<<<<< HEAD
+
     return (
         <Auxiliary>
             <h1 className={classes["Title"]}>{title}</h1>
@@ -156,6 +108,6 @@ export default connect(mapStateToProps, {
     fetchSingleCategory,
     resetTopNews,
 })(withRouter(TopNews));
-=======
+
 export default withRouter(TopNews);
->>>>>>> 7f8afe59c9822338cf3509dd2517dae1d2fd5537
+
